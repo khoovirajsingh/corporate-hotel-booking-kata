@@ -2,8 +2,10 @@ package features
 
 import company.CompanyService
 import employee.BookingService
+import hotel.HotelRepository
 import hotel.HotelService
 import hotel.RoomType.STANDARD
+import io.mockk.mockk
 import org.amshove.kluent.`should not be`
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -20,20 +22,22 @@ class EmployeeBookingFeature {
         private val CHECKOUT = LocalDate.of(2020, 1, 19)
     }
 
+    private lateinit var hotelRepository: HotelRepository
     private lateinit var hotelService: HotelService
     private lateinit var companyService: CompanyService
     private lateinit var bookingService: BookingService
 
     @BeforeEach
     fun setUp() {
-        hotelService = HotelService()
+        hotelRepository = mockk()
+        hotelService = HotelService(hotelRepository)
         companyService = CompanyService()
         bookingService = BookingService()
     }
 
     @Test
     fun `an employee can book a room`() {
-        hotelService.setRoomType(HOTEL_ID, ROOM_TYPE, QUANTITY)
+        hotelService.setRoom(HOTEL_ID, ROOM_TYPE, QUANTITY)
         companyService.addEmployee(COMPANY_ID, EMPLOYEE_ID)
 
         val booking = bookingService.book(EMPLOYEE_ID, HOTEL_ID, ROOM_TYPE, CHECKIN, CHECKOUT)
