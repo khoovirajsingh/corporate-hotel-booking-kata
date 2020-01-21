@@ -30,7 +30,14 @@ class HotelServiceShould {
     }
 
     @Test
-    fun `throw an exception if hotel does not exist`() {
+    fun `throw an exception when adding an existing hotel`() {
+        val addHotel = { hotelService.addHotel(HOTEL_ID, HOTEL_NAME) }
+
+        addHotel shouldThrow HotelAlreadyExist::class
+    }
+
+    @Test
+    fun `throw an exception when adding a room to a non existing hotel`() {
         every { hotelRepository.findHotelBy(HOTEL_ID) } returns null
 
         val setRoom = { hotelService.setRoom(HOTEL_ID, ROOM_NUMBER, STANDARD) }

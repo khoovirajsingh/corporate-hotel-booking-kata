@@ -17,4 +17,8 @@ class HotelService(private val hotelRepository: HotelRepository) {
     private fun validateHotelId(hotelId: Int) {
         hotelRepository.findHotelBy(hotelId) ?: throw HotelDoesNotExist()
     }
+
+    fun addHotel(hotelId: Int, hotelName: String) {
+        throw HotelAlreadyExist()
+    }
 }
