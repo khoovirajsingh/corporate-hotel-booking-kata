@@ -16,7 +16,7 @@ class EmployeeBookingFeature {
         private const val EMPLOYEE_ID = 13
         private const val HOTEL_ID = 7
         private const val COMPANY_ID = 27
-        private const val QUANTITY = 6
+        private const val ROOM_NUMBER = 6
         private val ROOM_TYPE = STANDARD
         private val CHECKIN = LocalDate.of(2020, 1, 16)
         private val CHECKOUT = LocalDate.of(2020, 1, 19)
@@ -37,7 +37,7 @@ class EmployeeBookingFeature {
 
     @Test
     fun `an employee can book a room`() {
-        hotelService.setRoom(HOTEL_ID, ROOM_TYPE, QUANTITY)
+        hotelService.setRoom(HOTEL_ID, ROOM_NUMBER, ROOM_TYPE)
         companyService.addEmployee(COMPANY_ID, EMPLOYEE_ID)
 
         val booking = bookingService.book(EMPLOYEE_ID, HOTEL_ID, ROOM_TYPE, CHECKIN, CHECKOUT)

@@ -1,7 +1,9 @@
 package hotel
 
 class HotelService(private val hotelRepository: HotelRepository) {
-    fun setRoom(hotelId: Int, roomType: RoomType, quantity: Int) {
+    fun setRoom(hotelId: Int, roomNumber: Int, roomType: RoomType) {
         val hotel = hotelRepository.findHotelBy(hotelId) ?: throw HotelDoesNotExist()
+        val room = Room(hotelId, roomNumber, roomType)
+        hotelRepository.update(room)
     }
 }
