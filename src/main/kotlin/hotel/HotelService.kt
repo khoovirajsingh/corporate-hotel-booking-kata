@@ -19,6 +19,11 @@ class HotelService(private val hotelRepository: HotelRepository) {
     }
 
     fun addHotel(hotelId: Int, hotelName: String) {
-        throw HotelAlreadyExist()
+        val hotel = hotelRepository.findHotelBy(hotelId)
+        if (hotel != null) {
+            throw HotelAlreadyExist()
+        } else {
+            hotelRepository.add(Hotel(hotelId, hotelName))
+        }
     }
 }

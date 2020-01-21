@@ -37,6 +37,15 @@ class HotelServiceShould {
     }
 
     @Test
+    fun `add a new hotel`() {
+        every { hotelRepository.findHotelBy(HOTEL_ID) } returns null
+
+        hotelService.addHotel(HOTEL_ID, HOTEL_NAME)
+
+        verify { hotelRepository.add(HOTEL) }
+    }
+
+    @Test
     fun `throw an exception when adding a room to a non existing hotel`() {
         every { hotelRepository.findHotelBy(HOTEL_ID) } returns null
 

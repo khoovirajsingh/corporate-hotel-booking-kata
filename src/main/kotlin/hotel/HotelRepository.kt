@@ -15,4 +15,8 @@ class HotelRepository {
     fun add(room: Room) {
 
     }
+
+    fun add(room: Hotel) {
+
+    }
 }
