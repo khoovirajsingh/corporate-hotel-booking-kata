@@ -28,4 +28,6 @@ class HotelService(private val hotelRepository: HotelRepository) {
     }
 
     private fun hotelExists(hotel: Hotel?) = hotel != null
+
+    fun findHotelById(hotelId: Int) = hotelRepository.findHotelBy(hotelId)
 }

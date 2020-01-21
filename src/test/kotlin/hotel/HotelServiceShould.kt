@@ -5,6 +5,7 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify
+import org.amshove.kluent.`should be`
 import org.amshove.kluent.shouldThrow
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -70,5 +71,14 @@ class HotelServiceShould {
         hotelService.setRoom(HOTEL_ID, ROOM_NUMBER, MASTER_SUITE)
 
         verify { hotelRepository.add(MASTER_ROOM) }
+    }
+
+    @Test
+    fun `find hotel by id`() {
+        every { hotelRepository.findHotelBy(HOTEL_ID) } returns HOTEL
+
+        val hotel = hotelService.findHotelById(HOTEL_ID)
+
+        hotel `should be` HOTEL
     }
 }
