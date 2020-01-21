@@ -11,4 +11,8 @@ class HotelRepository {
     fun findRoom(hotelId: Int, roomNumber: Int): Room? {
         return null
     }
+
+    fun add(room: Room) {
+
+    }
 }
