@@ -24,7 +24,7 @@ class HotelServiceShould {
 
     @Test
     fun `throw an exception if hotel does not exist`() {
-        every { hotelRepository.findHotelBy(any()) } returns null
+        every { hotelRepository.findHotelBy(HOTEL_ID) } returns null
         val setRoom = { hotelService.setRoom(HOTEL_ID, ROOM_TYPE, QUANTITY) }
         setRoom shouldThrow HotelDoesNotExist::class
     }
