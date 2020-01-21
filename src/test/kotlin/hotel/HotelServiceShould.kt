@@ -12,6 +12,7 @@ class HotelServiceShould {
     companion object {
         private const val HOTEL_ID = 7
         private const val HOTEL_NAME = "Hilton"
+        private val HOTEL = Hotel(HOTEL_ID, HOTEL_NAME)
         private const val ROOM_NUMBER = 6
         private val ROOM_TYPE = RoomType.STANDARD
         private val STANDARD_ROOM = Room(HOTEL_ID, this.ROOM_NUMBER, ROOM_TYPE)
@@ -29,13 +30,16 @@ class HotelServiceShould {
     @Test
     fun `throw an exception if hotel does not exist`() {
         every { hotelRepository.findHotelBy(HOTEL_ID) } returns null
+
         val setRoom = { hotelService.setRoom(HOTEL_ID, ROOM_NUMBER, ROOM_TYPE) }
+
         setRoom shouldThrow HotelDoesNotExist::class
     }
 
     @Test
-    internal fun `update a room`() {
-        every { hotelRepository.findHotelBy(HOTEL_ID) } returns Hotel(HOTEL_ID, HOTEL_NAME)
+    fun `update a room`() {
+        every { hotelRepository.findHotelBy(HOTEL_ID) } returns HOTEL
+        every { hotelRepository.findRoom(HOTEL_ID, ROOM_NUMBER) } returns STANDARD_ROOM
 
         hotelService.setRoom(HOTEL_ID, ROOM_NUMBER, ROOM_TYPE)
 

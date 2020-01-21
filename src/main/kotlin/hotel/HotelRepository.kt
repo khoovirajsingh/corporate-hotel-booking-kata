@@ -7,4 +7,8 @@ class HotelRepository {
 
     fun update(standardRoom: Room) {
     }
+
+    fun findRoom(hotelId: Int, roomNumber: Int): Room? {
+        return null
+    }
 }
