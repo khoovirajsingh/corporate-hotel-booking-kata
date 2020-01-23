@@ -35,4 +35,9 @@ class CompanyServiceShould {
 
         addEmployee shouldThrow EmployeeAlreadyExist::class
     }
+
+    @Test
+    fun `delete employee`() {
+
+    }
 }
