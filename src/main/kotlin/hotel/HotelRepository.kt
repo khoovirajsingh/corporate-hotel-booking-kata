@@ -1,8 +1,10 @@
 package hotel
 
 class HotelRepository {
+    private val hotels = mutableListOf<Hotel>()
+
     fun findHotelBy(hotelId: Int): Hotel? {
-        return null
+        return hotels.find { it.id == hotelId }
     }
 
     fun update(standardRoom: Room) {
@@ -16,7 +18,7 @@ class HotelRepository {
 
     }
 
-    fun add(room: Hotel) {
-
+    fun add(hotel: Hotel) {
+        hotels.add(hotel)
     }
 }
