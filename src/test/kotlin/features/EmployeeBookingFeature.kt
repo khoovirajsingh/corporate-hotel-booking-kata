@@ -1,5 +1,6 @@
 package features
 
+import company.CompanyRepository
 import company.CompanyService
 import employee.BookingService
 import hotel.HotelRepository
@@ -24,6 +25,7 @@ class EmployeeBookingFeature {
 
     private lateinit var hotelRepository: HotelRepository
     private lateinit var hotelService: HotelService
+    private lateinit var companyRepository: CompanyRepository
     private lateinit var companyService: CompanyService
     private lateinit var bookingService: BookingService
 
@@ -31,7 +33,7 @@ class EmployeeBookingFeature {
     fun setUp() {
         hotelRepository = mockk()
         hotelService = HotelService(hotelRepository)
-        companyService = CompanyService()
+        companyService = CompanyService(companyRepository)
         bookingService = BookingService()
     }
 

@@ -1,7 +1,12 @@
 package company
 
-class CompanyService {
+class CompanyService(private val companyRepository: CompanyRepository) {
+
     fun addEmployee(companyId: Int, employeeId: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        companyRepository.add(Employee(companyId, employeeId))
+    }
+
+    fun deleteEmployee(employeeId: Int) {
+
     }
 }
