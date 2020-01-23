@@ -9,6 +9,7 @@ class HotelRepository {
     }
 
     fun update(room: Room) {
+        findRoom(room.hotelId, room.roomNumber)?.roomType = room.roomType
     }
 
     fun findRoom(hotelId: Int, roomNumber: Int): Room? {
